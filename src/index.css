@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Your Tailwind v4 theme variables */
+@theme {
+  --color-primary: #3B82F6;   /* Blue */
+  --color-secondary: #6366F1; /* Indigo */
+  --color-dark: #0F172A;      /* Navy */
+  --color-light: #F8FAFC;     /* Light Gray */
+  --color-accent: #22C55E;    /* Green */
+  --font-primary: "Poppins", sans-serif
+}
+
+/* Fallback utility classes mapped to variables (safe & explicit) */
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-dark { background-color: var(--color-dark); }
+.bg-light { background-color: var(--color-light); }
+.bg-accent { background-color: var(--color-accent); }
+
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.text-dark { color: var(--color-dark); }
+.text-light { color: var(--color-light); }
+.text-accent { color: var(--color-accent); }
+
+/* Gradient helpers */
+.from-primary { --tw-gradient-from: var(--color-primary); }
+.to-secondary { --tw-gradient-to: var(--color-secondary); }
+
+/* small design utilities */
+:root {
+  --max-width: 1200px;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Button classes referencing variables for consistent CTA styles */
+.btn-primary {
+  background-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  color: white;
+}
+.btn-outline {
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+}
+
+/* subtle glass navbar bg for light/dark contexts */
+.glass {
+  background-color: rgba(248,250,252,0.8); /* light glass default */
+  backdrop-filter: blur(6px);
+}
+
+/* In your main CSS file, e.g., app/globals.css */
+
+/* Define the custom keyframes */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Create the utility class that uses the keyframes */
+.animate-bounce-slow {
+  animation: bounce-slow 1.4s infinite;
+}
