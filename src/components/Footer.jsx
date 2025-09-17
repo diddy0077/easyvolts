@@ -9,10 +9,10 @@ const navLinks = [
 
 const socialLinks = [
   { icon: <FaTwitter />, href: 'https://twitter.com/easyvolts' },
-  { icon: <FaLinkedin />, href: 'https://linkedin.com/company/easyvolts' },
+  { icon: <FaLinkedin />, href: 'https://www.linkedin.com/company/104146204/admin/dashboard/' },
   { icon: <FaFacebook />, href: 'https://facebook.com/easyvolts' },
   { icon: <FaGithub />, href: 'https://github.com/easyvolts' },
-  { icon: <FaInstagram />, href: 'https://instagram.com/easyvolts' },
+  { icon: <FaInstagram />, href: 'https://www.instagram.com/easyvolts?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
 ];
 
 export default function Footer() {
@@ -37,13 +37,14 @@ export default function Footer() {
               <img 
                 src="https://easyvolts.ng/img/logo-light.png" 
                 alt="EasyVolts Logo" 
-                className="h-15" 
+                className="h-12 w-12" 
               />
             </a>
             </div>
-            <p className="max-w-md text-sm leading-relaxed mb-4">
+            <p className="max-w-md text-sm leading-relaxed mb-1">
               Powering secure technology solutions for businesses worldwide. We are dedicated to delivering excellence and innovation in every project.
             </p>
+            <p className='max-w-md text-sm leading-relaxed mb-4'><span className='text-md'>Motto:</span> Lighting the Future with Smart Technology.</p>
             <div className="flex space-x-4 mb-4">
               {socialLinks.map((social, index) => (
                 <a 
@@ -60,9 +61,9 @@ export default function Footer() {
             </div>
           </div>
   
-          {/* Links and Contact - Stack on mobile, two columns on tablet, three columns on desktop */}
+         
           <div className="grid grid-cols-2 md:grid-cols-3 lg:col-span-2 gap-12">
-            {/* Company/Support Links */}
+            
             {navLinks.map((section, index) => (
               <div key={index} className="flex flex-col items-center md:items-start text-center md:text-left">
                 <h3 className="text-xl font-bold text-white mb-4">{section.title}</h3>
@@ -104,8 +105,8 @@ export default function Footer() {
       </div>
   
       <div className="mt-12 container mx-auto px-6 text-center border-t border-gray-700 py-8">
-        <p className="text-sm text-gray-500">
-          © {new Date().getFullYear()} EasyVolts. All rights reserved.
+        <p className="text-sm text-gray-500 uppercase font-semibold">
+          © {new Date().getFullYear()} Easy Volt Consultants Firm. All Rights Reserved.
         </p>
       </div>
     </footer>

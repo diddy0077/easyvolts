@@ -1,6 +1,7 @@
 import React from "react"
 import { motion } from "framer-motion"
 import CountUp from "react-countup"
+import { Link } from "react-router-dom"
 
 export default function Hero() {
   return (
@@ -51,20 +52,32 @@ export default function Hero() {
           transition={{ delay: 0.7, duration: 0.6 }}
           className="flex justify-center gap-4"
         >
-          <a
-            href="#contact"
+          <Link
+            to='get-started'
             className="px-6 py-3 rounded-full btn-primary font-semibold shadow-lg transform hover:-translate-y-0.5 transition"
           >
             Get Started
-          </a>
+          </Link>
 
-          <a
-            href="#services"
-            className="px-6 py-3 rounded-full border border-light/20 text-light hover:bg-light/10 transition"
-          >
-            Our Services
-          </a>
+          <motion.a
+                href="#contact"
+                className="inline-block px-6 py-3 rounded-full px-6 py-3 rounded-full border border-light/20 text-light hover:bg-light/10 transition font-medium relative overflow-hidden group"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Pseudo-element for the sliding background animation */}
+                <span 
+                  className="absolute inset-0 bg-secondary transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"
+                ></span>
+                
+                {/* Text content, needs to be on top of the background and change color on hover */}
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+                  Get a Quote
+                </span>
+              </motion.a>
         </motion.div>
+
+        
 
         {/* Stats */}
         <motion.div

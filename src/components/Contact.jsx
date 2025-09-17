@@ -10,7 +10,7 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: <FaLinkedin size={18} />, link: 'https://linkedin.com/yourcompany', color: 'text-blue-400 hover:text-blue-200' },
+  { icon: <FaLinkedin size={18} />, link: 'https://www.linkedin.com/company/104146204/admin/dashboard/', color: 'text-blue-400 hover:text-blue-200' },
   { icon: <FaTwitter size={18} />, link: 'https://twitter.com/yourcompany', color: 'text-sky-400 hover:text-sky-200' },
   { icon: <FaGithub size={18} />, link: 'https://github.com/yourcompany', color: 'text-gray-400 hover:text-gray-200' },
 ];
@@ -68,13 +68,13 @@ export default function Contact() {
           variants={containerVariants}
         >
           <motion.h2 
-            className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight"
+            className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight"
             variants={itemVariants}
           >
-            Get In Touch
+            Get In <span className='text-primary'>Touch</span>
           </motion.h2>
           <motion.p 
-            className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto"
+            className="mt-4 text-md font-medium text-gray-600 max-w-3xl mx-auto"
             variants={itemVariants}
           >
             We'd love to hear from you! Whether you have a project idea, a question, or just want to say hello, our team is ready to help.
@@ -90,7 +90,7 @@ export default function Contact() {
             variants={containerVariants}
           >
             <motion.h3 
-              className="text-3xl font-bold mb-6"
+              className="text-2xl font-bold mb-6"
               variants={itemVariants}
             >
               Contact Information
@@ -129,7 +129,7 @@ export default function Contact() {
           >
             {!sent ? (
               <form onSubmit={handleSubmit} className="grid gap-6">
-                <motion.h3 className="text-3xl font-bold text-gray-900 mb-2" variants={itemVariants}>
+                <motion.h3 className="text-2xl font-bold text-gray-900 mb-2" variants={itemVariants}>
                   Send Us a Message
                 </motion.h3>
                 <motion.input
@@ -138,7 +138,7 @@ export default function Contact() {
                   value={form.name}
                   onChange={handleChange}
                   placeholder="Your Name"
-                  className="p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-4 focus:ring-purple-200 transition-shadow"
+                  className="p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-4 focus:ring-indigo-600 transition duration-300"
                   variants={itemVariants}
                 />
                 <motion.input
@@ -148,7 +148,7 @@ export default function Contact() {
                   onChange={handleChange}
                   type="email"
                   placeholder="Email Address"
-                  className="p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-4 focus:ring-purple-200 transition-shadow"
+                  className="p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-4 focus:ring-indigo-600 transition duration-300"
                   variants={itemVariants}
                 />
                 <motion.textarea
@@ -158,13 +158,13 @@ export default function Contact() {
                   onChange={handleChange}
                   rows="5"
                   placeholder="Tell us about the project"
-                  className="p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-4 focus:ring-purple-200 transition-shadow"
+                  className="p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-4 focus:ring-indigo-600 transition duration-300"
                   variants={itemVariants}
                 ></motion.textarea>
 
                 <motion.button 
                   type="submit" 
-                  className="w-full px-8 py-4 rounded-xl bg-purple-600 text-white font-bold shadow-lg hover:bg-purple-700 transition-colors"
+                  className="w-full px-8 py-4 rounded-xl bg-purple-600 text-white font-bold shadow-lg hover:bg-purple-700 transition-colors cursor-pointer"
                   variants={buttonVariants}
                   whileHover="hover"
                   whileTap="tap"

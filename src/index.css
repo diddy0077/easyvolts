@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Your Tailwind v4 theme variables */
+
 @theme {
   --color-primary: #3B82F6;   /* Blue */
   --color-secondary: #6366F1; /* Indigo */
@@ -10,7 +10,7 @@
   --font-primary: "Poppins", sans-serif
 }
 
-/* Fallback utility classes mapped to variables (safe & explicit) */
+
 .bg-primary { background-color: var(--color-primary); }
 .bg-secondary { background-color: var(--color-secondary); }
 .bg-dark { background-color: var(--color-dark); }
@@ -23,7 +23,7 @@
 .text-light { color: var(--color-light); }
 .text-accent { color: var(--color-accent); }
 
-/* Gradient helpers */
+
 .from-primary { --tw-gradient-from: var(--color-primary); }
 .to-secondary { --tw-gradient-to: var(--color-secondary); }
 
@@ -44,7 +44,7 @@ html, body, #root {
   padding-right: 1rem;
 }
 
-/* Button classes referencing variables for consistent CTA styles */
+
 .btn-primary {
   background-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   color: white;
@@ -54,15 +54,13 @@ html, body, #root {
   color: white;
 }
 
-/* subtle glass navbar bg for light/dark contexts */
+
 .glass {
   background-color: rgba(248,250,252,0.8); /* light glass default */
   backdrop-filter: blur(6px);
 }
 
-/* In your main CSS file, e.g., app/globals.css */
 
-/* Define the custom keyframes */
 @keyframes bounce-slow {
   0%, 100% {
     transform: translateY(-25%);
@@ -74,7 +72,17 @@ html, body, #root {
   }
 }
 
-/* Create the utility class that uses the keyframes */
 .animate-bounce-slow {
   animation: bounce-slow 1.4s infinite;
+}
+
+@keyframes blob-animation {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob-animation 7s infinite;
 }

@@ -1,53 +1,47 @@
-import React,{useState, useEffect} from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Trusted from './components/Trusted'
-import Services from './components/Services'
-import Team from './components/Team'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import OurProcess from './components/OurProcess'
-import Loader from './components/Loader'
+import React, { useState, useEffect } from 'react';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Loader from './components/Loader';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import AboutPage from './pages/AboutPage';
+import HomePage from './pages/HomePage';
+import GetStarted from './pages/GetStarted';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
-    // You can replace this with a real loading event, e.g., fetching data.
-    const timer = setTimeout(() => {
+    // Check if the current path is the homepage
+    if (location.pathname === '/') {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 5000); 
+
+      return () => clearTimeout(timer);
+    } else {
+      
       setLoading(false);
-    }, 5000); 
-
-
-    return () => clearTimeout(timer);
-  }, []);
-
-
+    }
+  }, [location.pathname]); // The effect re-runs when the path changes
 
   return (
     <>
-      {loading ? <Loader/> : <div className="font-sans bg-light text-dark antialiased">
-      <Navbar />
-      <main className="pt-16">
-        <Hero />
-          <section className="bg-white">
-          <Services />
-        </section>
-        <section className="bg-light">
-          <Trusted />
-        </section>
-        <section className="bg-light">
-          <Team />
-        </section>
-        <section className="bg-light">
-          <OurProcess/>
-        </section>
-        <section className="bg-white">
-          <Contact />
-        </section>
-      </main>
-      <Footer />
-    </div>}
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="font-sans bg-light text-dark antialiased">
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/get-started' element={<GetStarted />} />
+            <Route path='/about-us' element={<AboutPage />} />
+            </Routes>
+            <ScrollToTop/>
+          <Footer />
+        </div>
+      )}
     </>
-  )
+  );
 }
