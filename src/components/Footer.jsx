@@ -79,7 +79,6 @@ export default function Footer() {
               </div>
             ))}
   
-            {/* Contact Info */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h3 className="text-xl font-bold text-white mb-4">Contact</h3>
               <ul className="space-y-2">

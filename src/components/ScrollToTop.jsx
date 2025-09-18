@@ -5,7 +5,6 @@ import { FaArrowUp } from 'react-icons/fa';
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Show button when page is scrolled up to a certain amount
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.pageYOffset > 300) {

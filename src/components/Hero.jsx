@@ -9,12 +9,10 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center bg-[url('https://easyvolts.ng/img/1.jpg')] bg-cover bg-center"
     >
-      {/* Overlays */}
       <div className="absolute inset-0 bg-dark/85"></div>
       <div className="absolute inset-0 opacity-50"></div>
 
       <div className="relative z-10 container mx-auto text-center px-4 py-28">
-        {/* Heading */}
 
           <motion.h1
           initial={{ opacity: 0, y: 50 }}
@@ -34,7 +32,6 @@ export default function Hero() {
           <span className="text-primary">Secure Technology</span>
         </motion.h1>
 
-        {/* Subtext */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -45,7 +42,6 @@ export default function Hero() {
           top-tier cybersecurity practices.
         </motion.p>
 
-        {/* Buttons */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -65,12 +61,10 @@ export default function Hero() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Pseudo-element for the sliding background animation */}
                 <span 
                   className="absolute inset-0 bg-secondary transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"
                 ></span>
                 
-                {/* Text content, needs to be on top of the background and change color on hover */}
                 <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
                   Get a Quote
                 </span>
@@ -79,7 +73,6 @@ export default function Hero() {
 
         
 
-        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -90,7 +83,7 @@ export default function Hero() {
             <div className="text-2xl font-bold text-light">
               <CountUp
                 start={0}
-                end={10}
+                end={5}
                 duration={4}
                 enableScrollSpy
                 scrollSpyOnce

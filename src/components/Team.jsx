@@ -5,7 +5,6 @@ import jack from '../assets/jack.jpg'
 import me from '../assets/me.jpg'
 import alex from '../assets/alex.webp'
 
-// Add more data to each team member object
 const members = [
   { 
     name: 'David Jack', 
@@ -78,7 +77,6 @@ const Card = ({ member, index }) => {
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
 
-  // New transforms for the 3D tilt effect
   const rotateX = useTransform(springY, [-100, 100], [5, -5]);
   const rotateY = useTransform(springX, [-100, 100], [-5, 5]);
 
@@ -99,7 +97,6 @@ const Card = ({ member, index }) => {
   return (
     <motion.div
       className="bg-white rounded-3xl shadow-2xl p-8 text-center border border-gray-100 transform transition-transform duration-300 relative group"
-      // Apply the new 3D transforms here
       style={{ rotateX, rotateY }}
       initial="hidden"
       whileInView="visible"
@@ -131,7 +128,6 @@ const Card = ({ member, index }) => {
   );
 };
 
-// SVG curve component
 const WavyBackground = () => (
   <svg
     className="absolute inset-0 z-0 opacity-80"

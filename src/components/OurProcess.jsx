@@ -30,7 +30,6 @@ const processSteps = [
   }
 ];
 
-// Framer Motion variants for text elements
 const textVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -44,7 +43,6 @@ const textVariants = {
   },
 };
 
-// Framer Motion variants for process cards
 const cardVariants = {
   hidden: { opacity: 0, scale: 0.8, y: 50 },
   visible: {
@@ -74,7 +72,6 @@ const iconVariants = {
 };
 
 
-// Main Component
 export default function OurProcess() {
   const ProgressBar = ({ progress }) => {
     const barControls = useAnimation();
@@ -131,7 +128,6 @@ export default function OurProcess() {
           </motion.p>
         </div>
 
-        {/* --- Desktop Layout (Horizontal Timeline) --- */}
         <div className="hidden lg:block">
           <div className="relative flex justify-center items-center h-48 mb-8">
             <div className="absolute w-full max-w-6xl h-0.5 bg-gray-300 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"></div>
@@ -189,7 +185,6 @@ export default function OurProcess() {
           </div>
         </div>
 
-        {/* --- Mobile Layout (Vertical Timeline) --- */}
         <div className="lg:hidden">
           {processSteps.map((step, index) => (
             <motion.div
@@ -201,11 +196,9 @@ export default function OurProcess() {
               variants={cardVariants}
               transition={{ delay: index * 0.2 }}
             >
-              {/* Vertical chain line and dot */}
               <div className="absolute top-0 left-6 -translate-x-1/2 h-full w-px bg-gray-300"></div>
               <div className="absolute top-0 left-6 -translate-x-1/2 -mt-1 w-3 h-3 rounded-full bg-gray-400"></div>
               
-              {/* Icon */}
               <motion.div
                 className="absolute top-0 left-6 -translate-x-1/2 -mt-9 w-12 h-12 rounded-full border-2 border-indigo-400 flex items-center justify-center text-indigo-600 shadow-md bg-white z-10"
                 whileHover="hover"
@@ -214,7 +207,6 @@ export default function OurProcess() {
                 {step.icon}
               </motion.div>
               
-              {/* Content Card */}
               <div className="bg-white rounded-xl shadow-lg p-8 ml-16">
                 <ProgressBar progress={step.progress} />
                 <div className="text-4xl font-extrabold text-gray-200 mb-2">0{index + 1}</div>

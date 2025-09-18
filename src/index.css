@@ -56,7 +56,7 @@ html, body, #root {
 
 
 .glass {
-  background-color: rgba(248,250,252,0.8); /* light glass default */
+  background-color: rgba(248,250,252,0.8); 
   backdrop-filter: blur(6px);
 }
 
@@ -85,4 +85,34 @@ html, body, #root {
 
 .animate-blob {
   animation: blob-animation 7s infinite;
+}
+
+@theme {
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  --animate-fade-in: fade-in 1s ease-out forwards;
+}
+
+@theme {
+
+  --shadow-glow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.25);
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.mySwiper {
+  background: transparent !important;
+}
+
+.mySwiper .swiper-wrapper {
+  overflow: visible !important; 
 }

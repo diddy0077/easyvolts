@@ -13,18 +13,18 @@ export default function App() {
   const location = useLocation();
 
   useEffect(() => {
-    // Check if the current path is the homepage
+  
     if (location.pathname === '/') {
       const timer = setTimeout(() => {
         setLoading(false);
-      }, 5000); 
+      }, 3000); 
 
       return () => clearTimeout(timer);
     } else {
       
       setLoading(false);
     }
-  }, [location.pathname]); // The effect re-runs when the path changes
+  }, [location.pathname]); 
 
   return (
     <>

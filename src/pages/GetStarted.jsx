@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaUser, FaProjectDiagram, FaPhone, FaComments, FaEnvelope, FaCheckCircle, FaUpload } from 'react-icons/fa';
-import { FiCheckCircle } from 'react-icons/fi';
+import { FiCheckCircle,FiFileText,FiX} from 'react-icons/fi';
 
 const heroImage = "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=2940";
 
@@ -11,6 +11,8 @@ const stepVariants = {
   exit: { opacity: 0, x: 50, transition: { duration: 0.3 } },
 };
 
+
+
 const formSteps = [
   { id: 1, name: 'Tell Us About You', icon: <FaUser /> },
   { id: 2, name: 'Share Your Project Goals', icon: <FaProjectDiagram /> },
@@ -18,7 +20,9 @@ const formSteps = [
 ];
 
 export default function GetStarted() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -29,6 +33,13 @@ export default function GetStarted() {
     file: null,
     contactMethod: '',
   });
+
+    useEffect(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    },[])
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -53,11 +64,33 @@ export default function GetStarted() {
     setCurrentStep(prev => prev + 1);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form Submitted:', formData);
-    setCurrentStep(4);
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true)
+  setIsSubmitting(true);
+
+  try {
+    const response = await fetch('https://easyvolts-server.onrender.com/submissions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData), 
+    });
+
+    if (response.ok) {
+      console.log('Form submitted successfully!');
+      setCurrentStep(4);
+    } else {
+      console.error('Submission failed:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Network error:', error);
+  } finally {
+    setIsSubmitting(false);
+    setLoading(false)
+  }
+};
 
   const renderStep = () => {
     switch (currentStep) {
@@ -162,7 +195,24 @@ export default function GetStarted() {
                   </div>
                   <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} />
                 </label>
+                {/* Display selected file name if a file is chosen */}
               </div>
+              {formData.file && (
+  <div className="flex items-center justify-between p-3 mt-2 rounded-lg bg-gray-100 text-gray-700 border border-gray-200">
+    <div className="flex self-start items-center space-x-2">
+      <FiFileText size={18} />
+      <span>{formData.file.name}</span>
+    </div>
+    <button
+      type="button"
+      onClick={() => setFormData(prev => ({ ...prev, file: null }))}
+      className="text-red-500 hover:text-red-700 transition"
+      aria-label="Remove selected file"
+    >
+      <FiX size={20} />
+    </button>
+  </div>
+)}
             </div>
             <div className="flex justify-between">
               <motion.button
@@ -225,13 +275,14 @@ export default function GetStarted() {
                 Back
               </motion.button>
               <motion.button
-                type="submit"
-                className="bg-purple-600 text-white font-semibold py-3 md:px-8 px-5 rounded-full hover:bg-purple-700 transition-colors cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Submit Project
-              </motion.button>
+  type="submit"
+  className="bg-purple-600 text-white font-semibold py-3 md:px-8 px-5 rounded-full hover:bg-purple-700 transition-colors cursor-pointer"
+  whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
+  whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
+  disabled={isSubmitting} 
+>
+  {isSubmitting ? 'Submitting...' : 'Submit Project'}
+</motion.button>
             </div>
           </motion.form>
         );
@@ -261,7 +312,6 @@ export default function GetStarted() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans pt-16">
-      {/* Hero Section */}
       <section className="relative overflow-hidden py-24 md:py-32 text-center text-white bg-gray-900">
         <div className="absolute inset-0 z-0 opacity-20" style={{ backgroundImage: `url(${heroImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
         <div className="relative z-10 container mx-auto px-4 max-w-4xl">
@@ -295,7 +345,7 @@ export default function GetStarted() {
         </div>
       </section>
 
-      {/* Main Form Section */}
+    
       <section id="get-started-form" className="py-20 md:py-24">
         <div className="container mx-auto px-4 max-w-3xl">
           {/* Progress Bar */}
@@ -340,7 +390,7 @@ export default function GetStarted() {
             </div>
           </div>
 
-          {/* Form Content */}
+       
           <div className="bg-white p-8 md:p-12 rounded-lg shadow-xl border border-gray-100">
             <AnimatePresence mode="wait">
               {renderStep()}

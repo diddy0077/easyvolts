@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLaptopCode, FaHandshake, FaShieldAlt, FaLightbulb, FaRocket, FaUserCheck, FaCogs } from 'react-icons/fa';
 import { FiTarget, FiEye, FiZap, FiCheckCircle } from 'react-icons/fi';
+import ConnectWithUs from '../components/ConnectWithUs';
 
-// Core content data
+
 const aboutContent = {
   mission: {
     title: 'Mission Statement',
@@ -37,7 +38,7 @@ const whyChooseUs = [
   { title: 'Trusted Partnership', icon: <FaHandshake />, description: 'We don’t just deliver projects; we build long-term relationships by guiding you from concept through deployment and beyond.' },
 ];
 
-// Framer Motion variants for animations
+
 const fadeIn = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
@@ -58,29 +59,36 @@ const slideInFromRight = {
 export default function AboutPage() {
   const [activeTab, setActiveTab] = useState('mission');
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  },[])
+
   return (
     <div className="bg-gray-50 text-gray-800 font-sans overflow-x-hidden">
-      {/* Hero Section */}
+  
       <section
       style={{
         backgroundRepeat: 'no-repeat',
         backgroundImage: "url('https://easyvolts.ng/img/2.jpg')",
         backgroundSize: 'cover',
-        backgroundAttachment: 'fixed', // Parallax effect
+        backgroundAttachment: 'fixed',
       }}
       className="bg-gray-900 text-white py-24 pb-10 md:pt-40 md:pb-10 md:py-32 relative overflow-hidden pt-42"
     >
-      {/* Background Overlays and Animated Blobs */}
+      
       <div className="absolute inset-0 bg-black/70"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-black/20"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
 
-      {/* Animated Blobs for Visual Interest */}
+ 
       <div className="absolute top-1/4 left-0 w-64 h-64 bg-purple-400 rounded-full mix-blend-multiply filter blur-2xl opacity-40 animate-blob"></div>
       <div className="absolute bottom-1/2 right-0 w-64 h-64 bg-teal-400 rounded-full mix-blend-multiply filter blur-2xl opacity-40 animate-blob animation-delay-2000"></div>
 
       <div className="container mx-auto px-6 relative z-10 text-center">
-        {/* Staggered text animation container */}
+     
         <motion.div
           initial="hidden"
           animate="visible"
@@ -106,7 +114,7 @@ export default function AboutPage() {
           variants={fadeIn}
           initial="hidden"
           animate="visible"
-          transition={{ delay: 0.6 }} // Adjusted delay for staggering
+          transition={{ delay: 0.6 }}
         >
           <svg className="w-10 h-10 mx-auto text-white animate-bounce rotate-[180deg]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" d="M10 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1z" clipRule="evenodd"></path>
@@ -116,11 +124,11 @@ export default function AboutPage() {
       </div>
     </section>
 
-      {/* New Section for Provided Text */}
+      
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Image Column */}
+        
             <motion.div
               className="md:order-1"
               variants={slideInFromLeft}
@@ -135,7 +143,7 @@ export default function AboutPage() {
               />
             </motion.div>
 
-            {/* Text Column */}
+     
             <motion.div
               className="md:order-2"
               variants={slideInFromRight}
@@ -156,7 +164,7 @@ export default function AboutPage() {
         </div>
       </section>
       
-      {/* Mission & Vision Section (Tabbed) */}
+
       <section className="py-24 bg-gray-100">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -220,7 +228,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Core Values Section */}
+
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 text-center">
           <motion.div
@@ -255,7 +263,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+
       <section className="py-24 bg-gray-100">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -303,7 +311,11 @@ export default function AboutPage() {
             </motion.div>
           </div>
         </div>
+
+        <ConnectWithUs />
       </section>
+
+      
     </div>
   );
 }

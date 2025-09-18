@@ -5,7 +5,7 @@ import { FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa'; // Social medi
 
 const contactInfo = [
   { icon: <FiMail size={20} className="text-white" />, text: 'info@easyvolts.ng', link: 'info@easyvolts.ng', label: 'Email' },
-  { icon: <FiPhone size={20} className="text-white" />, text: '+2348083443574', link: 'tel:+2348083443574', label: 'Phone' },
+  { icon: <FiPhone size={20} className="text-white" />, text: '(234) EASY-VOLTS', link: 'tel:+234easyvolts', label: 'Phone' },
   { icon: <FiMapPin size={20} className="text-white" />, text: 'Sky mall Ikeja Lagos', link: '#', label: 'Address' },
 ];
 
@@ -50,6 +50,25 @@ export default function Contact() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    fetch('https://easyvolts-server.onrender.com/submissions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(form)
+    })
+      .then((res) => {
+        if (!res.ok) {
+        throw new Error('Error submitting form')
+      }
+      })
+      .then((data) => {
+        console.log(data)
+        console.log('Form submitted successfully!')
+      })
+      .catch((error) => {
+      console.log('Error submitting form', error)
+    })
     setTimeout(() => setSent(true), 800);
   }
 

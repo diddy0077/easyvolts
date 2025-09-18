@@ -59,19 +59,16 @@ const handleScroll = (e, href, toggleMenu) => {
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation(); // Get the current location
+  const location = useLocation(); 
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   
-  // Conditionally filter links based on the current path
   const filteredMenuLinks = menuLinks.filter(link => {
-    // If on the homepage, show all links
     if (location.pathname === '/') {
       return true;
     }
-    // If on any other page, hide 'Services' and 'Contact'
     return link.name !== 'Services' && link.name !== 'Contact';
   });
 

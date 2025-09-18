@@ -1,15 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import brand1 from '../assets/brand1.jpg'
+import brand2 from '../assets/brand2.jpg'
+import brand3 from '../assets/brand3.jpg'
+import brand4 from '../assets/brand4.png'
 
-// Use a more professional set of placeholder logos
+
 const logos = [
-  'https://cdn.worldvectorlogo.com/logos/microsoft-1.svg',
-  // 'https://cdn.worldvectorlogo.com/logos/amazon-icon.svg',
-  'https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg',
-  'https://cdn.worldvectorlogo.com/logos/stripe-4.svg',
-  'https://cdn.worldvectorlogo.com/logos/shopify.svg',
-  'https://cdn.worldvectorlogo.com/logos/netflix-3.svg',
-  'https://cdn.worldvectorlogo.com/logos/atlassian-1.svg',
+  brand1,
+  brand2,
+  brand3,
+  brand4,
 ];
 
 const allLogos = [...logos, ...logos, ...logos];
@@ -55,7 +56,6 @@ const textVariants = {
   },
 };
 
-// Reusable Logo card component
 const LogoCard = ({ src }) => (
   <div className="flex-shrink-0 w-32 md:w-40 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300">
     <img 
@@ -69,7 +69,6 @@ const LogoCard = ({ src }) => (
 export default function Trusted() {
   return (
     <div className="bg-gray-50 py-24 overflow-hidden relative">
-      {/* Subtle background glow effect */}
       <div className="absolute inset-0 z-0 bg-white" style={{
         clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
         WebkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
